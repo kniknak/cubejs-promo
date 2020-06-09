@@ -1,31 +1,42 @@
 cube(`Orders`, {
-  sql: `
-  select 1 as id, 100 as amount, 'new' status
-  UNION ALL
-  select 2 as id, 200 as amount, 'new' status
-  UNION ALL
-  select 3 as id, 300 as amount, 'processed' status
-  UNION ALL
-  select 4 as id, 500 as amount, 'processed' status
-  UNION ALL
-  select 5 as id, 600 as amount, 'shipped' status
-  `,
-
+  sql: `SELECT * FROM public.orders`,
+  
+  joins: {
+    
+  },
+  
   measures: {
     count: {
-      type: `count`
+      type: `count`,
+      drillMembers: [id, createdAt]
     },
-
-    totalAmount: {
-      sql: `amount`,
+    
+    number: {
+      sql: `number`,
       type: `sum`
     }
   },
-
+  
   dimensions: {
     status: {
       sql: `status`,
       type: `string`
+    },
+    
+    id: {
+      sql: `id`,
+      type: `number`,
+      primaryKey: true
+    },
+    
+    createdAt: {
+      sql: `created_at`,
+      type: `time`
+    },
+    
+    completedAt: {
+      sql: `completed_at`,
+      type: `time`
     }
   }
 });
