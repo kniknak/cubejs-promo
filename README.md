@@ -1,5 +1,7 @@
 # cubejs-promo
 
+![Screenshot](valar-morghulis.png?raw=true "Valar Morghulis")
+
 ## How to run locally
 
 ### Server
